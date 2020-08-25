@@ -4,30 +4,32 @@ user_answer = gets.chomp().upcase
   
 
 def game
-    countries = ["FRANCE","GERMANY", "CANADA","CANADA", "JAPAN","BRAZIL", "PERU", "ARGENTINA"]
+    #countries = ["FRANCE","GERMANY", "CANADA","CANADA", "JAPAN","BRAZIL", "PERU", "ARGENTINA"]
     require_relative 'countries_hints.rb'
     include CountriesHints
     countries_hints = CountriesHints::COUNTRIES_HINTS
+    countries = countries_hints.keys
     random_country = countries.sample 
-    puts "\nFirst hint! #{countries_hints[random_country.to_sym][0]}\nWhat country is it? "
+    puts "\nFirst hint! #{countries_hints[random_country][0]}\nWhat country is it?\n"
     user_answer_country = gets.chomp().upcase
-    if user_answer_country === random_country
-        puts "\nCorrect! You are good!"
+    if user_answer_country === random_country.to_s
+        puts "\nCorrect! You are good!\n"
         restart()
     else
-        puts "\nIncorrect. \nSecond hint! #{countries_hints[random_country.to_sym][1]}\nWhat country is it? "
+        puts "\nIncorrect. \nSecond hint! #{countries_hints[random_country][1]}\nWhat country is it?\n"
         user_answer_country = gets.chomp().upcase
-        if user_answer_country === random_country
-            puts "\nCorrect! I know you knew it!"
+        puts user_answer_country 
+        if user_answer_country === random_country.to_s
+            puts "\nCorrect! I know you knew it!\n"
             restart()
         else
-            puts  "\nIncorrect. \nLast hint! #{countries_hints[random_country.to_sym][2]}\nWhat country is it? "
+            puts  "\nIncorrect. \nLast hint! #{countries_hints[random_country][2]}\nWhat country is it? "
             user_answer_country = gets.chomp().upcase
-            if user_answer_country === random_country
-                puts "\nCongratulations! You won!"
+            if user_answer_country === random_country.to_s
+                puts "\nCongratulations! You won!\n"
                 restart()
             else
-                puts "\nI'm sorry. The correct answer is #{random_country}.You didn't won this time."
+                puts "\nI'm sorry. The correct answer is #{random_country}.\nYou didn't won this time.\n"
                 restart()
             end    
         end
